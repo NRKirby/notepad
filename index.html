@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Notepad</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+<body>
+
+<textarea 
+    id="text"
+    autofocus 
+    autocomplete="off"
+></textarea>
+
+<script>
+    function initialize() {
+        const textArea = document.getElementById("text");
+        const storage = localStorage.getItem("notepad");
+        if (storage !== null) {
+            textArea.value = storage;
+        }
+
+        window.addEventListener("beforeunload", (event) => {
+            localStorage.setItem("notepad", textArea.value.trim());
+        });
+    };
+    initialize();    
+    </script>
+
+<style>
+    body {
+        margin: 0;
+    }
+    textarea {
+        margin: 20px;
+        font-size: large;
+        border: none;
+        outline: none;
+        overflow: hidden; 
+        width: 100vw;
+        height: 100vh;
+        resize: none;
+    }
+</style>    
+
+</body>
+</html>
